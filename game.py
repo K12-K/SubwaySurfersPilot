@@ -16,21 +16,46 @@ import random
 PATH_TO_GAME = 'C:\\Program Files\\WindowsApps\\' \
                '16925JeuxjeuxjeuxGames.SubwaySurfersOriginalFree_1.0.0.0_x64__66k318ytnjhfe\\app\\app.exe'
 
-GAME = {"top": 150, "left": 570, "width": 750, "height": 750}
-PAUSE = {"top": 10, "left": 15, "width": 60, "height": 60}
+# Path to BlueStacks HD Player
+BLUESTACKS_PLAYER = "C:\\Program Files\\BlueStacks_nxt\\HD-Player.exe"
+
+# Name of your BlueStacks instance (default: "Nougat32" or "Android")
+BLUESTACKS_INSTANCE = "Nougat32"
+
+# Subway Surfers Android package name
+APP_PACKAGE = "com.kiloo.subwaysurf"
+
+# GAME = {"top": 150, "left": 570, "width": 750, "height": 750}
+# PAUSE = {"top": 10, "left": 15, "width": 60, "height": 60}
+# Adjusted for BlueStacks 1920x1080 (fullscreen) window
+GAME = {"top": 160, "left": 585, "width": 750, "height": 750}  # Crop square around main gameplay area
+PAUSE = {"top": 175, "left": 590, "width": 60, "height": 60}   # Pause button region near top-left of game
 PATH_TO_IMAGES = 'images\\training'
 
 frame_width = 750
 frame_height = 750
 frame_rate = 12.0
-VIDEO_PATH = "C:\\Users\\nikla\\PycharmProjects\\subwAI\\recordings\\"
+# VIDEO_PATH = "C:\\Users\\nikla\\PycharmProjects\\subwAI\\recordings\\"
+VIDEO_PATH = "C:\\Users\\khush\\Downloads\\subwAI\\recordings\\"
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 
+def launch_game():
+    try:
+        subprocess.Popen([
+            BLUESTACKS_PLAYER,
+            "--instance", BLUESTACKS_INSTANCE,
+            "--launchApp", APP_PACKAGE
+        ])
+        print("Launching Subway Surfers in BlueStacks...")
+        time.sleep(20)  # Wait for emulator and app to load
+    except Exception as e:
+        print("Failed to launch BlueStacks:", e)
 
 class Game:
     def __init__(self):
         print("Starting the Game Subway Surfers!")
-        subprocess.run(PATH_TO_GAME)
+        # subprocess.run(PATH_TO_GAME)
+        launch_game()
 
         self.game_active = False
         self.all_zeros = False
@@ -89,13 +114,16 @@ class Game:
         # self.disable_wifi()
         self.game_active = True
         pyautogui.moveTo(1, 1)
-        pyautogui.click(x=890, y=640)
+        # pyautogui.click(x=890, y=640)
+        pyautogui.click(x=960, y=540)  # Center tap to focus the screen
         self.game_counter += 1
         print(f"starting game {self.game_counter}!")
         time.sleep(4)
-        pyautogui.click(1134, 943)
+        # pyautogui.click(1134, 943)
+        pyautogui.click(x=1450, y=900)  # Tap 'Play' or confirmation
         time.sleep(2)
-        pyautogui.click(970, 640)
+        # pyautogui.click(970, 640)
+        pyautogui.click(x=1200, y=700)  # Tap to dismiss tutorial/ad/etc
         self.out_name = VIDEO_PATH+time.strftime("%Y%m%d-%H%M%S")+'.avi'
         self.out = cv2.VideoWriter(self.out_name, fourcc, frame_rate, (frame_width, frame_height))
         self.game_start = time.time()
