@@ -44,7 +44,8 @@ def launch_game():
         subprocess.Popen([
             BLUESTACKS_PLAYER,
             "--instance", BLUESTACKS_INSTANCE,
-            "--launchApp", APP_PACKAGE
+            "--cmd", "launchApp",
+            "--package", APP_PACKAGE
         ])
         print("Launching Subway Surfers in BlueStacks...")
         time.sleep(20)  # Wait for emulator and app to load
