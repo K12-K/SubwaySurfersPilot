@@ -135,7 +135,8 @@ class Game:
         Called when game is over (when pause-button is not visible anymore). Makes necessary mouse-clicks
         to start next run.
         """
-        images = ['images/buttons/save_me4.png', 'images/buttons/play_button4.png', 'images/buttons/prizes.png']
+        # images = ['images/buttons/save_me4.png', 'images/buttons/play_button4.png', 'images/buttons/prizes.png']
+        images = ['images/buttons/save_me.png', 'images/buttons/play_button.png', 'images/buttons/prize_button.png']
         while not self.game_active:
             click_location = None
             while not click_location:
