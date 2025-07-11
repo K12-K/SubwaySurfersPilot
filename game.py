@@ -116,12 +116,14 @@ class Game:
         self.game_active = True
         pyautogui.moveTo(1, 1)
         # pyautogui.click(x=890, y=640)
-        pyautogui.click(x=960, y=540)  # Center tap to focus the screen
+        # pyautogui.click(x=960, y=540)  # Center tap to focus the screen
+        pyautogui.click(x=960, y=80000)  # Center tap to focus the screen
         self.game_counter += 1
         print(f"starting game {self.game_counter}!")
         time.sleep(4)
         # pyautogui.click(1134, 943)
-        pyautogui.click(x=1450, y=900)  # Tap 'Play' or confirmation
+        # pyautogui.click(x=1450, y=900)  # Tap 'Play' or confirmation
+        pyautogui.click(x=1111, y=1000)  # Tap 'Play' or confirmation
         time.sleep(2)
         # pyautogui.click(970, 640)
         pyautogui.click(x=1200, y=700)  # Tap to dismiss tutorial/ad/etc
