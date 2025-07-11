@@ -126,7 +126,8 @@ class Game:
         pyautogui.click(x=1111, y=1000)  # Tap 'Play' or confirmation
         time.sleep(2)
         # pyautogui.click(970, 640)
-        pyautogui.click(x=1200, y=700)  # Tap to dismiss tutorial/ad/etc
+        # pyautogui.click(x=1200, y=700)  # Tap to dismiss tutorial/ad/etc
+        pyautogui.click(x=1180, y=180)  # Tap to dismiss tutorial/ad/etc
         self.out_name = VIDEO_PATH+time.strftime("%Y%m%d-%H%M%S")+'.avi'
         self.out = cv2.VideoWriter(self.out_name, fourcc, frame_rate, (frame_width, frame_height))
         self.game_start = time.time()
